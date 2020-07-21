@@ -18,7 +18,7 @@
 - [x] 收取礼物
 - [x] 免费扭蛋
 - [x] 自动刷经验
-- [x] 自动刷8/10/11图 可自定义每关扫荡次数
+- [x] 自动刷8/10/11/12图 可自定义每关扫荡次数
 - [x] 自动购买体力
 - [x] 自动探索(额外脚本)
 - [x] 初始化mana号(额外脚本)
@@ -33,7 +33,7 @@
 6. 地下城自动刷支援，默认第一个人，请确保支援角色不大于农场号等级+30；
 7. 购买3次体力；
 8. 收取所有任务报酬；
-9. 扫荡全部8/10/11图 3次 次数在Automator.py中全局定义；
+9. 扫荡全部8/10/11/12图 3次 次数在Automator.py中全局定义；
 10. 家园自动收取；
 11. 公会给副会长（默认排序第二位）自动点赞；
 12. 自动免费扭蛋；
@@ -50,11 +50,11 @@
 需要安装下列python包:
 
 ```
-pip install opencv-python==3.* -i https://pypi.tuna.tsinghua.edu.cn/simple/
-pip install matplotlib -i https://pypi.tuna.tsinghua.edu.cn/simple/
-pip install uiautomator2 -i https://mirrors.aliyun.com/pypi/simple/
-pip install baidu_aip
-pip install gevent
+pip3 install opencv-python==3.* -i https://pypi.tuna.tsinghua.edu.cn/simple/
+pip3 install matplotlib -i https://pypi.tuna.tsinghua.edu.cn/simple/
+pip3 install uiautomator2 -i https://mirrors.aliyun.com/pypi/simple/
+pip3 install baidu_aip
+pip3 install gevent -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 
 若使用模拟器，则需要将模拟器设置为桥接模式，同时需要打开开发者usb调试。具体参考这个项目(https://github.com/Jiahonzheng/JGM-Automator)
@@ -106,8 +106,8 @@ python main.py
    可手动取消注释使得不刷装备的号去刷1-1经验，和进行其他DIY
    
    ```
-   zhanghao1    mima1   11
-   zhanghao5    mima5   11
+   zhanghao1    mima1   12
+   zhanghao5    mima5   12
    zhanghao6    mima6
    zhanghao7    mima7
    ```
@@ -286,3 +286,12 @@ python main.py
 - 优化 改动ocr函数，log_handler.py ，cv.py，lock函数
 - 完全重写地下城，去除冗余代码**(需要百度OCR文字识别的API)**
 - 只要在界面上出现剧情都会进行跳过，出现异常即重启app
+
+2020/7/14 By:Dr_Bluemond
+
+- 另写一版地下城函数，可选择更换为dixiacheng_dev，不使用ocr，不处理获得塔币的可可萝教程
+- 优化赛马
+- lockimg增加retry参数，elseclick超过retry次则返回False
+- 增加lock_no_img函数，在有图片时一直点击elseclick，图片消失时点击ifclick
+- 增加区域定位辅助，现在如果搜图没有加上at则会在运行发现时提供at的坐标，直接复制即可使用
+- 优化初始化程序，大幅增加其效率
